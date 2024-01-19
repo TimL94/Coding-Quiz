@@ -64,20 +64,30 @@ questionText.textContent = "Click start at the top to play!";
 start.addEventListener("click", gameFunction);
 
 function gameFunction() {
-    
+    questionNumber = 0;
     nextQuestion(questionNumber);
-
+    /*
+    start.textContent = 'CANCEL';
+    start.addEventListener('click', function(){
+        questionText.textContent = "Click start at the top to play!";
+        boxOneText.textContent = null;
+        boxTwoText.textContent = null;
+        boxThreeText.textContent = null;
+        boxFourText.textContent = null;
+        start.textContent = 'Start';
+        questionNumber = 0;
+        return;
+    })
+    */
     boxOne.addEventListener('click', nextQuestion);
     boxTwo.addEventListener('click', nextQuestion);
     boxThree.addEventListener('click', nextQuestion);
     boxFour.addEventListener('click', nextQuestion);
 
     if (questionNumber === null){
+        questionNumber === 0;
         return;
     }
-
-    
-
     
 }
 
@@ -89,7 +99,6 @@ function nextQuestion(num){
 
     
     var nextQuestion = questionArray[questionNumber];
-    console.log(nextQuestion);
     questionText.textContent = nextQuestion.question;
     boxOneText.textContent = nextQuestion.ansewerOne;
     boxTwoText.textContent = nextQuestion.answerTwo;
