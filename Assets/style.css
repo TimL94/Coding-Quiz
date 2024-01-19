@@ -67,6 +67,7 @@ header button {
     justify-content: center;
     align-items: center;
     width: 50%;
+    margin-top: 0;
 
 }
 
@@ -143,20 +144,5 @@ header button {
     }
     .card-container h2 {
         font-size: 115%;
-    }
-    .countdown-card h2{
-        font-size: 115%;
-    }
-}
-
-@media screen and (max-width: 380px){
-    .card-container li h3{
-        font-size: 60%;
-    }
-    .card-container h2 {
-        font-size: 80%;
-    }
-    .countdown-card h2{
-        font-size: 100%;
     }
 }
