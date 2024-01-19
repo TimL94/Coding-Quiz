@@ -29,6 +29,7 @@ header button {
     height: 50px;
     align-self: center;
     margin: 10px;
+
 }
 .main-container{
     display: flex;
@@ -36,7 +37,6 @@ header button {
     justify-content: space-around;
     height: 100%;
     align-items: center;
-    border: 1px dotted red;
     background-image: radial-gradient(whitesmoke, black);
 
 }
@@ -44,16 +44,18 @@ header button {
 .card-container{
     display: flex;
     width: 50%;
+    max-width: 650px;
     height: 25em;
     flex-direction: column;
     justify-content: space-around;
     border: 5px solid black;
     border-radius: 30px;
-    background-image: radial-gradient(whitesmoke, black);
+    background-image: linear-gradient(whitesmoke, black);
+    text-align: center;
   
 }
 
-.card-container h1{
+.card-container h2{
     align-self: center;
 }
 
@@ -68,7 +70,7 @@ header button {
 
 }
 
-.card-container li {
+.card-container button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,16 +79,16 @@ header button {
     width: 80%;
     height: 3em;
     margin-bottom: 10px;
-    background-color: blue;
+    background-image: linear-gradient(whitesmoke, lightblue);
     text-align: center;
 }
-.card-container li:hover {
+.card-container button:hover {
     border: 3px solid yellow;
     border-radius: 30px;
 }
 
 .card-container li h3 {
-    font-size: 200%;
+    font-size: 125%;
 }
 
 .countdown {
@@ -97,6 +99,7 @@ header button {
     border-radius: 30px;
     background-image: radial-gradient(whitesmoke, black);
     width: 30%;
+    max-width: 250px;
 }
 .countdown h2 {
     width: 100%;
@@ -118,18 +121,42 @@ header button {
 
 @media screen and (max-width: 768px){
     .card-container li h3{
-        font-size: 150%;
+        font-size: 100%;
     }
-    .card-container h1 {
+    .card-container h2 {
         font-size: 150%;
     }
 }
 
 @media screen and (max-width: 500px){
     .card-container li h3{
+        font-size: 90%;
+    }
+    .card-container h2 {
         font-size: 115%;
     }
-    .card-container h1 {
+}
+
+@media screen and (max-width: 420px){
+    .card-container li h3{
+        font-size: 70%;
+    }
+    .card-container h2 {
         font-size: 115%;
+    }
+    .countdown-card h2{
+        font-size: 115%;
+    }
+}
+
+@media screen and (max-width: 380px){
+    .card-container li h3{
+        font-size: 60%;
+    }
+    .card-container h2 {
+        font-size: 80%;
+    }
+    .countdown-card h2{
+        font-size: 100%;
     }
 }
