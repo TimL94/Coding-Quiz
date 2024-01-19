@@ -9,16 +9,16 @@
 <body>
     <header>
         <h1>Code Quiz</h1>
-        <button>Start</button>
+        <button id="start-button">Start</button>
     </header>
     <div class="main-container">
         <div class="card-container">
-            <h1 id="question">This is a question?</h1>
-            <ul>
-                <li class="option-box" ><h3 id="box-1">option</h3></li>
-                <li class="option-box" ><h3 id="box-2">option</h3></li>
-                <li class="option-box" ><h3 id="box-3">option</h3></li>
-                <li class="option-box" ><h3 id="box-4">option</h3></li>
+            <h2 id="question">This is a question?</h2>
+            <ul id="button-box">
+                <button class="option-box" id="box-1"><li><h3 id="box-1-text"></h3></li></button>
+                <button class="option-box" id="box-2"><li><h3 id="box-2-text"></h3></li></button>
+                <button class="option-box" id="box-3"><li><h3 id="box-3-text"></h3></li></button>
+                <button class="option-box" id="box-4"><li><h3 id="box-4-text"></h3></li></button>
             </ul>
         </div>
         <div class="countdown">
@@ -33,5 +33,6 @@
         </div>
 
     </div>
+    <script src="./Assets/scripts.js"></script>
 </body>
 </html>
