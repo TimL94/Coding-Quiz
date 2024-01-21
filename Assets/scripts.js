@@ -7,36 +7,39 @@ var boxOne = document.getElementById("box-1");
 var boxTwo = document.getElementById("box-2");
 var boxThree = document.getElementById("box-3");
 var boxFour = document.getElementById("box-4");
-var buttons = document.getElementsByClassName("option-box");
-var buttonBox = document.getElementById("button-box");
+var buttons = document.querySelectorAll('.button');
 var timer = document.getElementById('timer');
 var start = document.getElementById("start-button");
 var questionNumber = 0;
 
+console.log(buttons);
+
+
+
 var questionOne = {
     question : "Arrays in javascript cannot be used to store _____",
-    ansewerOne : "functions",
+    answerOne : "functions",
     answerTwo : "numbers",
     answerThree : "strings",
     answerFour : 'objects'
 }
 var questionTwo = {
     question : "a string can be is made of _____",
-    ansewerOne : "numbers",
+    answerOne : "numbers",
     answerTwo : "letters",
     answerThree : "special characters",
     answerFour : 'all of the above'
 }
 var questionThree = {
     question : "String values must be enclosed with _____",
-    ansewerOne : "parenthesis",
+    answerOne : "parenthesis",
     answerTwo : "quotation marks",
     answerThree : "curly brakcets",
     answerFour : 'brackets'
 }
 var questionFour = {
     question : "src is used in the script element to _____",
-    ansewerOne : "hide the file",
+    answerOne : "hide the file",
     answerTwo : "delete the file",
     answerThree : "Link the file",
     answerFour : 'none of the above'
@@ -51,8 +54,8 @@ var questionFive = {
 
 
 var questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive];
-var correctAnswers = [questionOne.answerFour, questionTwo.answerFour, 
-                    questionThree.answerTwo, questionFour.answerThree];
+var correctAnswers = [questionOne.answerOne, questionTwo.answerFour, 
+                    questionThree.answerOne, questionFour.answerThree];
 
 
 
@@ -64,6 +67,8 @@ questionText.textContent = "Click start at the top to play!";
 start.addEventListener("click", gameFunction);
 
 function gameFunction() {
+    var timeLeft = 60000;
+    var timeText = timeLeft/1000;
     questionNumber = 0;
     nextQuestion(questionNumber);
     /*
@@ -79,28 +84,72 @@ function gameFunction() {
         return;
     })
     */
+    
+    var gameTime = setInterval(function(){
+        timeLeft -= 1000;
+        timeText = timeLeft / 1000;
+        timer.textContent = timeText + " seconds";
+        if (timeLeft === 0){
+            clearInterval(gameTime); 
+            nextQuestion(4);
+        }
+        buttons.forEach(i =>{
+            i.addEventListener('click', (e) =>{
+                if (correctAnswers.includes(e.target.textContent)){
+                    console.log(e.target.textContent);
+                }else{
+                    timeLeft -= 15000;
+                }
+                nextQuestion();
+                
+                var delayInterval = 1000;
+        
+                var delay= setInterval(function(){
+                    if (delayInterval === 0){
+                        clearInterval(delay);
+                    }
+                    delayInterval -= 1000;
+                }, 1000)
+            });
+            })
+            if (timeLeft === 0 || timeLeft < 0){
+                clearInterval(gameTime); 
+                nextQuestion(4);
+            }
+    }, 1000)
+    
+
+    /*
     boxOne.addEventListener('click', nextQuestion);
     boxTwo.addEventListener('click', nextQuestion);
     boxThree.addEventListener('click', nextQuestion);
     boxFour.addEventListener('click', nextQuestion);
+    */
+    
+
+   
+    
 
     if (questionNumber === null){
-        questionNumber === 0;
+        questionNumber = 0;
+        timeLeft = 0;
         return;
     }
     
 }
 
 function nextQuestion(num){
-    if (questionNumber === 5){
+    num = questionNumber;
+    if (num === 5){
         questionNumber = null;
+        timeLeft = 0;
         return;
     }
 
     
     var nextQuestion = questionArray[questionNumber];
     questionText.textContent = nextQuestion.question;
-    boxOneText.textContent = nextQuestion.ansewerOne;
+    boxOneText.textContent = nextQuestion.answerOne;
     boxTwoText.textContent = nextQuestion.answerTwo;
     boxThreeText.textContent = nextQuestion.answerThree;
     boxFourText.textContent = nextQuestion.answerFour;
