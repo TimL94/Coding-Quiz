@@ -55,12 +55,13 @@ var questionFive = {
 
 var questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive];
 var correctAnswers = [questionOne.answerOne, questionTwo.answerFour, 
-                    questionThree.answerOne, questionFour.answerThree];
+                    questionThree.answerTwo, questionFour.answerThree];
 
 
 
 
 questionText.textContent = "Click start at the top to play!";
+timer.textContent = null;
 
 
 
@@ -69,82 +70,58 @@ start.addEventListener("click", gameFunction);
 function gameFunction() {
     var timeLeft = 60000;
     var timeText = timeLeft/1000;
+    var score = 0;
     questionNumber = 0;
+    start.style.display = "none";
     nextQuestion(questionNumber);
-    /*
-    start.textContent = 'CANCEL';
-    start.addEventListener('click', function(){
-        questionText.textContent = "Click start at the top to play!";
-        boxOneText.textContent = null;
-        boxTwoText.textContent = null;
-        boxThreeText.textContent = null;
-        boxFourText.textContent = null;
-        start.textContent = 'Start';
-        questionNumber = 0;
-        return;
-    })
-    */
-    
+   
     var gameTime = setInterval(function(){
         timeLeft -= 1000;
         timeText = timeLeft / 1000;
         timer.textContent = timeText + " seconds";
-        if (timeLeft === 0){
-            clearInterval(gameTime); 
-            nextQuestion(4);
-        }
-        buttons.forEach(i =>{
-            i.addEventListener('click', (e) =>{
-                if (correctAnswers.includes(e.target.textContent)){
-                    console.log(e.target.textContent);
-                }else{
-                    timeLeft -= 15000;
+        if (timeLeft <= 0){
+            clearInterval(gameTime);
+            questionNumber = 4; 
+            timer.textContent = "GAME OVER";
+            nextQuestion();
+        }else if (questionNumber === 5){
+            clearInterval(gameTime);
+            timer.textContent = "GAME OVER";
+        } 
+
+        }, 1000) 
+    
+
+    buttons.forEach(button => {
+        button.addEventListener('click', function(){
+            var buttonText = this.querySelector('h3').textContent;
+
+            if (correctAnswers.includes(buttonText)) {
+                console.log("correct");
+                score += 10;
+                console.log(score);
+            }else {
+                if (timeLeft <= 15){
+                    timeLeft = 0;
+                    timer.textContent = 'GAME OVER';
+                    return;
+                }else {
+                    timeLeft -= 10000;
                 }
-                nextQuestion();
-                
-                var delayInterval = 1000;
-        
-                var delay= setInterval(function(){
-                    if (delayInterval === 0){
-                        clearInterval(delay);
-                    }
-                    delayInterval -= 1000;
-                }, 1000)
-            });
-            })
-            if (timeLeft === 0 || timeLeft < 0){
-                clearInterval(gameTime); 
-                nextQuestion(4);
             }
-    }, 1000)
+
+            nextQuestion();
+
+        })
+    });
     
 
-    /*
-    boxOne.addEventListener('click', nextQuestion);
-    boxTwo.addEventListener('click', nextQuestion);
-    boxThree.addEventListener('click', nextQuestion);
-    boxFour.addEventListener('click', nextQuestion);
-    */
     
-
-   
-    
-
-    if (questionNumber === null){
-        questionNumber = 0;
-        timeLeft = 0;
-        return;
-    }
     
 }
 
-function nextQuestion(num){
-    num = questionNumber;
-    if (num === 5){
-        questionNumber = null;
-        timeLeft = 0;
-        return;
-    }
+function nextQuestion(){
+
 
     
     var nextQuestion = questionArray[questionNumber];
@@ -156,3 +133,5 @@ function nextQuestion(num){
     questionNumber ++;
     return;
 }
+
+function gameOver(){}
