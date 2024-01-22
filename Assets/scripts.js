@@ -8,11 +8,16 @@ var boxTwo = document.getElementById("box-2");
 var boxThree = document.getElementById("box-3");
 var boxFour = document.getElementById("box-4");
 var buttons = document.querySelectorAll('.button');
+var buttonContainer= document.getElementById('buttton-box');
+var containerOne = document.getElementById('container-one');
+var containerTwo = document.getElementById('container-two');
+var containerThree = document.getElementById('container-three');
 var timer = document.getElementById('timer');
 var start = document.getElementById("start-button");
 var questionNumber = 0;
 
 console.log(buttons);
+containerThree.style.display = "none";
 
 
 
@@ -73,7 +78,7 @@ function gameFunction() {
     var score = 0;
     questionNumber = 0;
     start.style.display = "none";
-    nextQuestion(questionNumber);
+    nextQuestion();
    
     var gameTime = setInterval(function(){
         timeLeft -= 1000;
@@ -84,9 +89,11 @@ function gameFunction() {
             questionNumber = 4; 
             timer.textContent = "GAME OVER";
             nextQuestion();
+            gameOver();
         }else if (questionNumber === 5){
             clearInterval(gameTime);
             timer.textContent = "GAME OVER";
+            gameOver();
         } 
 
         }, 1000) 
@@ -121,9 +128,6 @@ function gameFunction() {
 }
 
 function nextQuestion(){
-
-
-    
     var nextQuestion = questionArray[questionNumber];
     questionText.textContent = nextQuestion.question;
     boxOneText.textContent = nextQuestion.answerOne;
@@ -134,4 +138,9 @@ function nextQuestion(){
     return;
 }
 
-function gameOver(){}
+function gameOver(){
+    containerOne.style.display = 'none';
+    containerTwo.style.display = 'none';
+    containerThree.style.display = 'block';
+    return;
+}
