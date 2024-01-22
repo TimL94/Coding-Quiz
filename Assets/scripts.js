@@ -128,9 +128,6 @@ function gameFunction() {
 }
 
 function nextQuestion(){
-
-
-    
     var nextQuestion = questionArray[questionNumber];
     questionText.textContent = nextQuestion.question;
     boxOneText.textContent = nextQuestion.answerOne;
