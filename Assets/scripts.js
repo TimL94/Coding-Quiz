@@ -12,12 +12,16 @@ var buttonContainer= document.getElementById('buttton-box');
 var containerOne = document.getElementById('container-one');
 var containerTwo = document.getElementById('container-two');
 var containerThree = document.getElementById('container-three');
+var containerFour = document.getElementById('container-four');
 var timer = document.getElementById('timer');
 var start = document.getElementById("start-button");
+var scoreText = document.getElementById('score');
+var numberCorrectText =document.getElementById('number-correct');
 var questionNumber = 0;
 
 console.log(buttons);
 containerThree.style.display = "none";
+containerFour.style.display = 'none';
 
 
 
@@ -51,7 +55,7 @@ var questionFour = {
 }
 var questionFive = {
     question : 'GAME OVER',
-    ansewerOne : null,
+    answerOne : null,
     answerTwo : null,
     answerThree : null,
     answerFour : null
@@ -76,6 +80,7 @@ function gameFunction() {
     var timeLeft = 60000;
     var timeText = timeLeft/1000;
     var score = 0;
+    var numberCorrect = 0;
     questionNumber = 0;
     start.style.display = "none";
     nextQuestion();
@@ -88,11 +93,11 @@ function gameFunction() {
             clearInterval(gameTime);
             questionNumber = 4; 
             timer.textContent = "GAME OVER";
-            nextQuestion();
             gameOver();
         }else if (questionNumber === 5){
             clearInterval(gameTime);
             timer.textContent = "GAME OVER";
+            
             gameOver();
         } 
 
@@ -104,16 +109,17 @@ function gameFunction() {
             var buttonText = this.querySelector('h3').textContent;
 
             if (correctAnswers.includes(buttonText)) {
-                console.log("correct");
                 score += 10;
-                console.log(score);
+                numberCorrect ++;
+                scoreText.textContent = "Score: " + score;
+                numberCorrectText.textContent = "Number Correct: " + numberCorrect;
             }else {
                 if (timeLeft <= 15){
                     timeLeft = 0;
                     timer.textContent = 'GAME OVER';
                     return;
                 }else {
-                    timeLeft -= 10000;
+                    timeLeft -= 20000;
                 }
             }
 
@@ -141,6 +147,7 @@ function nextQuestion(){
 function gameOver(){
     containerOne.style.display = 'none';
     containerTwo.style.display = 'none';
-    containerThree.style.display = 'block';
+    containerThree.style.display = 'flex';
+    containerFour.style.display = 'flex';
     return;
 }

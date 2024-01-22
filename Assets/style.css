@@ -120,6 +120,12 @@ header button {
     text-decoration: underline;
 }
 
+#container-three li{
+    margin: 10%;
+    justify-self: flex-start;
+    width: 75%;
+}
+
 @media screen and (max-width: 768px){
     .card-container li h3{
         font-size: 100%;
