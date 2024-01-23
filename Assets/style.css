@@ -34,7 +34,8 @@ header button {
 .main-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-around;
+    justify-content: center;
+    flex-direction: column;
     height: 100%;
     align-items: center;
     background-image: radial-gradient(whitesmoke, black);
@@ -92,17 +93,19 @@ header button {
     font-size: 125%;
 }
 
-.countdown {
+.small-container {
+    order: 0;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    margin-bottom: 5%;
     border: 4px solid black;
     border-radius: 30px;
-    background-image: radial-gradient(whitesmoke, black);
-    width: 30%;
-    max-width: 250px;
+    background-image: linear-gradient(black, whitesmoke);
+    width: 50%;
+    max-width: 650px;
 }
-.countdown h2 {
+.small-container h2 {
     width: 100%;
     text-align: center;
 }
@@ -126,11 +129,22 @@ header button {
     width: 75%;
 }
 
+#container-four{
+    order: 0;
+}
+
 @media screen and (max-width: 768px){
     .card-container li h3{
         font-size: 100%;
     }
     .card-container h2 {
+        font-size: 150%;
+    }
+    .small-container h3 {
+        font-size: 100%;
+    }
+
+    .small-container h2 {
         font-size: 150%;
     }
 }
@@ -142,6 +156,14 @@ header button {
     .card-container h2 {
         font-size: 115%;
     }
+
+    .small-container h3 {
+        font-size: 90%;
+    }
+
+    .small-container h2 {
+        font-size: 115%;
+    }
 }
 
 @media screen and (max-width: 420px){
@@ -149,6 +171,14 @@ header button {
         font-size: 70%;
     }
     .card-container h2 {
-        font-size: 115%;
+        font-size: 100%;
+    }
+
+    .small-container h3 {
+        font-size: 70%;
+    }
+
+    .small-container h2 {
+        font-size: 100%
     }
 }

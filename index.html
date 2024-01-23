@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./Assets/style.css">
-    <title>Document</title>
+    <title>Coding Quiz</title>
 </head>
 <body>
     <header>
@@ -12,6 +12,16 @@
         <button id="start-button">Start</button>
     </header>
     <div class="main-container">
+        <div class="small-container" id="container-two">
+            <div class="countdown-card">
+                <h2>Countdown</h3>
+                    
+            </div>
+            
+            <div class="countdown-card">
+                <h3 id="timer"></h3>
+            </div>
+        </div>
         <div class="card-container" id="container-one">
             <h2 id="question"></h2>
             <ul id="button-box">
@@ -21,29 +31,8 @@
                 <button class="button" id="box-4"><li><h3 id="box-4-text"></h3></li></button>
             </ul>
         </div>
-        <div class="countdown" id="container-two">
-            <div class="countdown-card">
-                <h2>Countdown</h3>
-                    
-            </div>
-            
-            <div class="countdown-card">
-                <h3 id="timer">90 seconds</h3>
-            </div>
-        </div>
-
-        <div class="card-container" id="container-three">
-            <h2>GAME OVER</h2>
-            <ul>
-                <li id="score"><h3></h3></li>
-                <li id="number-correct"><h3></h3></li>
-                <button><li><h3>Save Score</h3></li></button>
-                <li></li>
-                <li></li>
-            </ul>
-
-        </div>
-        <div class="countdown" id="container-four">
+        
+        <div class="small-container" id="container-four">
             <div class="countdown-card">
                 <h2>High Score</h3>
                     
@@ -53,6 +42,16 @@
                 <h3 id="high-score"></h3>
             </div>
         </div>
+        <div class="card-container" id="container-three">
+            <h2>GAME OVER</h2>
+            <ul>
+                <li id="score"><h3></h3></li>
+                <li id="number-correct"><h3></h3></li>
+                <button><li><h3>Save Score</h3></li></button>
+            </ul>
+
+        </div>
+        
 
     </div>
     
