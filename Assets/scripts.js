@@ -97,7 +97,6 @@ function gameFunction() {
         }else if (questionNumber === 5){
             clearInterval(gameTime);
             timer.textContent = "GAME OVER";
-            
             gameOver();
         } 
 
