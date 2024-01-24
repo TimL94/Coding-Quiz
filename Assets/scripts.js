@@ -48,7 +48,7 @@ highScore.textContent = "player: " + localStorage.getItem('initials') + ' | scor
 
 // this section creates 5 objects all but the last containing a question and 4 options
 var questionOne = {
-    question : "variable.addEventListener('____', fucntion(){}); what is missing",
+    question : "variable.addEventListener('____', fucntion(){}); what is missing?",
     answerOne : "click",
     answerTwo : "swipe",
     answerThree : "variable",
