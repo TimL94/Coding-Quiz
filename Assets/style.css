@@ -189,7 +189,11 @@ header button {
         font-size: 70%;
     }
 
-    .small-container h2 {
+    #question h2 {
         font-size: 100%
+    }
+
+    #start-button {
+        font-size: 75%;
     }
 }
