@@ -8,20 +8,35 @@ var boxTwo = document.getElementById("box-2");
 var boxThree = document.getElementById("box-3");
 var boxFour = document.getElementById("box-4");
 var buttons = document.querySelectorAll('.button');
-var buttonContainer= document.getElementById('buttton-box');
+
 var containerOne = document.getElementById('container-one');
 var containerTwo = document.getElementById('container-two');
 var containerThree = document.getElementById('container-three');
 var containerFour = document.getElementById('container-four');
+var containerFive = document.getElementById('container-five');
+
 var timer = document.getElementById('timer');
 var start = document.getElementById("start-button");
 var scoreText = document.getElementById('score');
 var numberCorrectText =document.getElementById('number-correct');
+var saveScoreButton = document.getElementById('save-score');
+var highScore = document.getElementById('high-score');
+var initialsInput = document.getElementById('initials-input');
+var restartButton = document.getElementById('restart-button');
+
+
+var saveInitialsButton = document.getElementById('initials-button');
 var questionNumber = 0;
+var score = 0;
+var numberCorrect = 0;
+var timeLeft = 60000;
+var timeText = timeLeft/1000;
 
 console.log(buttons);
 containerThree.style.display = "none";
 containerFour.style.display = 'none';
+containerFive.style.display = 'none';
+highScore.textContent = "player: " + localStorage.getItem('initials') + ' | score: ' + localStorage.getItem('score');
 
 
 
@@ -74,13 +89,15 @@ timer.textContent = null;
 
 
 
-start.addEventListener("click", gameFunction);
+start.addEventListener("click",gameFunction);
+
+saveScoreButton.addEventListener('click', function(){
+    saveScore();
+});
+
+restartButton.addEventListener('click', restartGame);
 
 function gameFunction() {
-    var timeLeft = 60000;
-    var timeText = timeLeft/1000;
-    var score = 0;
-    var numberCorrect = 0;
     questionNumber = 0;
     start.style.display = "none";
     nextQuestion();
@@ -123,8 +140,10 @@ function gameFunction() {
             }
 
             nextQuestion();
+            
 
         })
+        
     });
     
 
@@ -149,4 +168,31 @@ function gameOver(){
     containerThree.style.display = 'flex';
     containerFour.style.display = 'flex';
     return;
+}
+
+function saveScore(){
+    containerThree.style.display = "none";
+    containerFive.style.display = "flex";
+    containerFive.style.justifyContent= 'center';
+    containerFive.style.alignItems ='center';
+    localStorage.setItem("score", score);
+
+    saveInitialsButton.addEventListener('click', function(){
+        var initials = initialsInput.value;
+        console.log(initials.lengthj);
+        if (initials.length <= 3){
+            localStorage.setItem('initials', initials);
+            window.alert('High Score Saved');
+            location.reload();
+        } else {
+            window.alert("entry must be 3 characters");
+            return;
+        }
+        
+    })
+    return;
+}
+
+function restartGame(){
+    location.reload();
 }
