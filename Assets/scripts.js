@@ -48,11 +48,11 @@ highScore.textContent = "player: " + localStorage.getItem('initials') + ' | scor
 
 // this section creates 5 objects all but the last containing a question and 4 options
 var questionOne = {
-    question : "Arrays in javascript cannot be used to store _____",
-    answerOne : "functions",
-    answerTwo : "numbers",
-    answerThree : "strings",
-    answerFour : 'objects'
+    question : "variable.addEventListener('____', fucntion(){}); what is missing",
+    answerOne : "click",
+    answerTwo : "swipe",
+    answerThree : "variable",
+    answerFour : 'reload'
 }
 var questionTwo = {
     question : "a string can be is made of _____",
