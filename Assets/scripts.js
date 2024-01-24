@@ -55,7 +55,7 @@ var questionOne = {
     answerFour : 'none of the above'
 }
 var questionTwo = {
-    question : "a string can be is made of _____",
+    question : "a string can consist of _____",
     answerOne : "numbers",
     answerTwo : "letters",
     answerThree : "special characters",
