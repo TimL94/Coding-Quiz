@@ -1,3 +1,7 @@
+
+// the following variable ddeclarations are seprated into groups that are similar to each other to help with organization
+
+// This section pulls the ID's for the  card which contains the questions and answer elements and assigns them to variables
 var questionText = document.getElementById("question");
 var boxOneText = document.getElementById("box-1-text");
 var boxTwoText = document.getElementById("box-2-text");
@@ -8,29 +12,47 @@ var boxTwo = document.getElementById("box-2");
 var boxThree = document.getElementById("box-3");
 var boxFour = document.getElementById("box-4");
 var buttons = document.querySelectorAll('.button');
-var buttonContainer= document.getElementById('buttton-box');
+
+// This section pulls the ID's for each container and assigns them to a unique variable
 var containerOne = document.getElementById('container-one');
 var containerTwo = document.getElementById('container-two');
 var containerThree = document.getElementById('container-three');
 var containerFour = document.getElementById('container-four');
+var containerFive = document.getElementById('container-five');
+
+// more elements are pulled by ID here and assigned to their own variables, these are primarily the buttons
 var timer = document.getElementById('timer');
 var start = document.getElementById("start-button");
 var scoreText = document.getElementById('score');
 var numberCorrectText =document.getElementById('number-correct');
-var questionNumber = 0;
+var saveScoreButton = document.getElementById('save-score');
+var highScore = document.getElementById('high-score');
+var initialsInput = document.getElementById('initials-input');
+var restartButton = document.getElementById('restart-button');
+var saveInitialsButton = document.getElementById('initials-button');
 
-console.log(buttons);
+
+// these variables set the global values for key game mechanics
+var questionNumber = 0;
+var score = 0;
+var numberCorrect = 0;
+var timeLeft = 60000;
+var timeText = timeLeft/1000;
+
+// this section hides end game containers and pulls the stored high score initials and score
 containerThree.style.display = "none";
 containerFour.style.display = 'none';
+containerFive.style.display = 'none';
+highScore.textContent = "player: " + localStorage.getItem('initials') + ' | score: ' + localStorage.getItem('score');
 
 
-
+// this section creates 5 objects all but the last containing a question and 4 options
 var questionOne = {
-    question : "Arrays in javascript cannot be used to store _____",
-    answerOne : "functions",
-    answerTwo : "numbers",
-    answerThree : "strings",
-    answerFour : 'objects'
+    question : "variable.addEventListener('____', fucntion(){}); what is missing?",
+    answerOne : "click",
+    answerTwo : "swipe",
+    answerThree : "variable",
+    answerFour : 'reload'
 }
 var questionTwo = {
     question : "a string can be is made of _____",
@@ -61,30 +83,38 @@ var questionFive = {
     answerFour : null
 }
 
-
+// this section creates an array that contains each question for easier access, 
+//and an array which contains each correct answer for checking against user input as the game is played
 var questionArray = [questionOne, questionTwo, questionThree, questionFour, questionFive];
 var correctAnswers = [questionOne.answerOne, questionTwo.answerFour, 
                     questionThree.answerTwo, questionFour.answerThree];
 
 
 
-
+// this section sets the intital text to prompt the user to start the game
 questionText.textContent = "Click start at the top to play!";
-timer.textContent = null;
+timer.textContent = '60 seconds';
 
 
+//this event listener waits for the user to click the start button and once this occurs starts the game
+start.addEventListener("click",gameFunction);
 
-start.addEventListener("click", gameFunction);
+// this records user highs score and initials and resets the game
+saveScoreButton.addEventListener('click', function(){
+    saveScore();
+});
+
+// this resets the game
+restartButton.addEventListener('click', restartGame);
 
 function gameFunction() {
-    var timeLeft = 60000;
-    var timeText = timeLeft/1000;
-    var score = 0;
-    var numberCorrect = 0;
+
+    // question number is used to iterate through the question array and the next question function is called to pull question 1
     questionNumber = 0;
     start.style.display = "none";
     nextQuestion();
    
+    //this starts the game timer and has logic to end the game when either the timer reaches 0 or there is no more questioins to answer
     var gameTime = setInterval(function(){
         timeLeft -= 1000;
         timeText = timeLeft / 1000;
@@ -102,7 +132,13 @@ function gameFunction() {
 
         }, 1000) 
     
+    // this section takes the array containing all of the buttons and sets up an event listener
+    // once a button is pressed its text content is checked against the correct answers array
 
+    // if correct 10 points is added to score, number correct is incremented, and end game text is updated
+    // if incorrect 20 seconds is subtracted from the time
+
+    // nextquestion is than called and the game progresses
     buttons.forEach(button => {
         button.addEventListener('click', function(){
             var buttonText = this.querySelector('h3').textContent;
@@ -123,8 +159,10 @@ function gameFunction() {
             }
 
             nextQuestion();
+            
 
         })
+        
     });
     
 
@@ -132,6 +170,7 @@ function gameFunction() {
     
 }
 
+// this function uses the variable question number to pull the next question from the question array and updates the matching elements
 function nextQuestion(){
     var nextQuestion = questionArray[questionNumber];
     questionText.textContent = nextQuestion.question;
@@ -143,10 +182,42 @@ function nextQuestion(){
     return;
 }
 
+// this function hides the game play comntainers and displays the endgame containers
 function gameOver(){
     containerOne.style.display = 'none';
     containerTwo.style.display = 'none';
     containerThree.style.display = 'flex';
     containerFour.style.display = 'flex';
     return;
+}
+
+// this functions hides the end game containers and displays the save highscore containers
+// user input is checked to make sure that is between 1 and 3 characters in length
+// the game is than reset
+function saveScore(){
+    containerThree.style.display = "none";
+    containerFive.style.display = "flex";
+    containerFive.style.justifyContent= 'center';
+    containerFive.style.alignItems ='center';
+    localStorage.setItem("score", score);
+
+    saveInitialsButton.addEventListener('click', function(){
+        var initials = initialsInput.value;
+        console.log(initials.lengthj);
+        if (initials.length <= 3 && initials.length > 0){
+            localStorage.setItem('initials', initials);
+            window.alert('High Score Saved');
+            location.reload();
+        } else {
+            window.alert("entry must be between 1 and 3 characters");
+            return;
+        }
+        
+    })
+    return;
+}
+
+// this function simply resets the game
+function restartGame(){
+    location.reload();
 }
