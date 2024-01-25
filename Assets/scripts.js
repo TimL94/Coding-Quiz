@@ -217,7 +217,7 @@ function saveScore(){
     return;
 }
 
-// this function simply resets the game
+// this function simply resets the game by reloading the page
 function restartGame(){
     location.reload();
 }
